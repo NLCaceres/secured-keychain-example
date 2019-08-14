@@ -58,15 +58,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         var cell = tableView.dequeueReusableCell(withIdentifier: cellId)
         if (cell == nil) {
-            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: cellId)
+            cell = UITableViewCell(style: .value1, reuseIdentifier: cellId)
         }
         
-        cell?.textLabel?.text = CCList[(indexPath as IndexPath).row].cardNickName
+        let cardInfo = CCList[(indexPath as IndexPath).row]
+        let cardNickname = cardInfo.cardNickName
+        cell?.textLabel?.text = cardNickname
+        let cardLast4 = String(cardInfo.cardNumber.suffix(4))
+        print("This is the last 4 digits: \(cardLast4)")
+        cell?.detailTextLabel?.text = cardLast4
+        print("This is in the detail text label: \(cell?.detailTextLabel?.text)")
         
         return cell!
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
             CCList.remove(at: (indexPath as IndexPath).row)

@@ -72,7 +72,7 @@ class AddCardInfoVC: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
-        print(textField.text)
+        print("This is the text in textfield: \(textField.text)")
         if let addCCICH = addCCInfoCH {
             addCCICH(cardNickNameTF.text!, cardHolderNameTF.text!, CCNumberTF.text!, expirationDateTF.text!, securityCodeTF.text!)
         }
